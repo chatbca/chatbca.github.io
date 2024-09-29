@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Tools and Resources</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        /* ... existing styles ... */
+
+        .filter-container {
+            text-align: center; 
+            margin-bottom: 20px;
+        }
+        .filter-select, .search-input {
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #3498db;
+            margin: 0 10px;
+        }
+        .search-input {
+            width: 200px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="stylish-nav">
+            <ul>
+                <li><a href="about.html">About us</a></li>
+            </ul>
+        </nav>
+        <style>
+            .stylish-nav {
+                background-color: #3498db;
+                padding: 10px 0;
+            }
+            .stylish-nav ul {
+                list-style-type: none;
+                text-align: center;
+                
+            }
+            .stylish-nav li {
+                display: inline-block;
+                margin: 0 15px;
+            }
+            .stylish-nav a {
+                color: #ffffff;
+                text-decoration: none;
+                font-weight: bold;
+                font-size: 18px;
+                transition: color 0.3s ease;
+            }
+            .stylish-nav a:hover {
+                color: #ecf0f1;
+            }
+        </style>
+    </header>
+    <h1>AI Tools and Resources</h1>
+    <div class="filter-container">
+        <select id="utility-filter" class="filter-select">
+            <option value="all">All Utilities</option>
+            <option value="high">High Utility</option>
+            <option value="medium">Medium Utility</option>
+            <option value="low">Low Utility</option>
+        </select>
+        <select id="category-filter" class="filter-select">
+            <option value="all">All Categories</option>
+            <option value="chatbot">Chatbots</option>
+            <option value="image">Image Generation</option>
+            <option value="content">Content Generation</option>
+            <option value="video">Video Generation</option>
+            <option value="audio">Audio Processing</option>
+            <option value="nlp">Natural Language Processing</option>
+            <option value="data">Data Analysis</option>
+            <option value="other">Other</option>
+        </select>
+        <input type="text" id="search-input" class="search-input" placeholder="Search AI tools...">
+    </div>
+    <!-- The rest of your HTML content goes here -->
+
+    <script>
+        function filterAndSearchTable() {
+            const selectedUtility = document.getElementById('utility-filter').value.toLowerCase();
+            const selectedCategory = document.getElementById('category-filter').value.toLowerCase();
+            const searchQuery = document.getElementById('search-input').value.toLowerCase();
+            const rows = document.querySelectorAll('table tr');
+            
+            rows.forEach(row => {
+                if (row.querySelector('th')) return; // Skip header row
+                const utilityCell = row.querySelector('td:nth-child(3)'); // Assuming utility is in the third column
+                const categoryCell = row.querySelector('td:nth-child(2)'); // Assuming category is in the second column
+                const nameCell = row.querySelector('td:nth-child(1)'); // Assuming name is in the first column
+                
+                const utilityMatch = selectedUtility === 'all' || utilityCell.textContent.toLowerCase().includes(selectedUtility);
+                const categoryMatch = selectedCategory === 'all' || categoryCell.textContent.toLowerCase().includes(selectedCategory);
+                const searchMatch = nameCell.textContent.toLowerCase().includes(searchQuery) ||
+                                    categoryCell.textContent.toLowerCase().includes(searchQuery) ||
+                                    utilityCell.textContent.toLowerCase().includes(searchQuery);
+                
+                if (utilityMatch && categoryMatch && searchMatch) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        }
+
+        document.getElementById('utility-filter').addEventListener('change', filterAndSearchTable);
+        document.getElementById('category-filter').addEventListener('change', filterAndSearchTable);
+        document.getElementById('search-input').addEventListener('input', filterAndSearchTable);
+    </script>
+</body>
+</html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Library</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+        table {
+            width: 100%;
+            max-width: 1200px;
+            margin: 20px auto;
+            border-collapse: separate;
+            border-spacing: 0 15px;
+            background-color: rgba(255, 255, 255, 0.8);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        th, td {
+            padding: 15px;
+            text-align: left;
+            vertical-align: middle;
+        }
+        th {
+            background-color: #3498db;
+            color: white;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        tr {
+            background-color: #ffffff;
+            transition: all 0.3s ease;
+        }
+        tr:hover {
+            transform: scale(1.02);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        td {
+            border-bottom: 1px solid #ecf0f1;
+        }
+        td:first-child {
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        a {
+            color: #3498db;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        a:hover {
+            color: #2980b9;
+            text-decoration: underline;
+        }
+        @media (max-width: 768px) {
+            table {
+                font-size: 14px;
+            }
+            th, td {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+
+<table>
+    
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>LINK</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>ChatGPT</td>
+            <td><p>ChatGPT is an AI chatbot developed by OpenAI. It is designed to provide answers to questions and help with tasks such as language translation, coding, and creative writing.</p></td>
+            <td><a href="https://chatgpt.com">ChatGPT</a></td>
+        </tr>
+        <tr>
+            <td>Bing</td>
+            <td><p>Bing is a web search engine and intelligent assistant developed by Microsoft. It uses AI to provide answers to questions, help with tasks, and assist users in finding information on the internet.</p></td>
+            <td><a href="https://www.bing.com">Bing</a></td>
+        </tr>
+        <tr>
+            <td>Copilot</td>
+            <td><p>Copilot is an AI-powered code completion tool developed by GitHub in collaboration with OpenAI. It uses machine learning to suggest code snippets and entire functions based on the context of your code and comments.</p></td>
+            <td><a href="https://copilot.microsoft.com/">Copilot</a></td>
+        </tr>
+        <tr>
+            <td>Gemini</td>
+            <td><p>Gemini is an AI chatbot developed by Google. It is designed to provide answers to questions and help with tasks such as language translation, coding, and creative writing.</p></td>
+            <td><a href="https://gemini.google.com">Gemini</a></td>
+        </tr>
+        <tr>
+            <td>claude</td>
+            <td><p>Claude is an AI chatbot developed by Anthropic. It is designed to provide answers to questions and help with tasks such as language translation, coding, and creative writing.</p></td>
+            <td><a href="https://claude.ai">Claude</a></td>
+        </tr>
+        <tr>
+            <td>DALL-E</td>
+            <td><p>DALL-E is an AI image generation model developed by OpenAI. It can create unique images from text descriptions.</p></td>
+            <td><a href="https://openai.com/dall-e-2">DALL-E</a></td>
+        </tr>
+        <tr>
+            <td>Midjourney</td>
+            <td><p>Midjourney is an AI-powered image generation tool that creates images from textual descriptions.</p></td>
+            <td><a href="https://www.midjourney.com">Midjourney</a></td>
+        </tr>
+        <tr>
+            <td>Stable Diffusion</td>
+            <td><p>Stable Diffusion is an open-source AI model for generating detailed images from text descriptions.</p></td>
+            <td><a href="https://stablediffusionweb.com">Stable Diffusion</a></td>
+        </tr>
+        </tr>
+        <tr>
+            <td>JIST</td>
+            <td><p>JIST (JavaScript Intelligent Suggestion Tool) is an AI-powered code completion and suggestion tool specifically designed for JavaScript developers. It uses machine learning to provide context-aware code suggestions and autocompletions.</p></td>
+            <td><a href="https://jist.ai">JIST</a></td>
+        </tr>
+        <tr>
+            <td>Cursor</td>
+            <td><p>Cursor is an AI-powered code editor that provides real-time code suggestions and autocompletions.</p></td>
+            <td><a href="https://cursor.sh">Cursor</a></td>
+        </tr>
+        <tr>
+            <td>GitHub Copilot</td>
+            <td><p>GitHub Copilot is an AI-powered code assistant that provides real-time code suggestions and autocompletions.</p></td>
+            <td><a href="https://github.com/features/copilot">GitHub Copilot</a></td>
+        </tr>   
+        <tr>
+            <td>Codex</td>
+            <td><p>Codex is an AI-powered code generation tool developed by GitHub in collaboration with OpenAI. It uses machine learning to suggest code snippets and entire functions based on the context of your code and comments.</p></td>
+            <td><a href="https://github.com/features/copilot">Codex</a></td>
+        </tr>
+        <tr>
+            <td>Codex</td>
+            <td><p>Codex is an AI-powered code generation tool developed by GitHub in collaboration with OpenAI. It uses machine learning to suggest code snippets and entire functions based on the context of your code and comments.</p></td>
+            <td><a href="https://github.com/features/copilot">Codex</a></td>
+        </tr>
+        <tr>
+            <td>StudyFetch</td>
+            <td><p>StudyFetch is an AI-powered study assistant that provides real-time code suggestions and autocompletions.</p></td>
+            <td><a href="https://studyfetch.com">StudyFetch</a></td>
+        </tr>
+        <tr>
+            <td>Notebook LM</td>
+            <td><p>notebook lm is an AI-powered study assistant that provides real-time code suggestions and autocompletions.</p></td>
+            <td><a href="https://notebooklm.com">notebook lm</a></td>
+        </tr>
+        <tr>
+            <td>Stocking</td>
+            <td><p>Stocking is an AI-powered Image Generator.</p></td>
+            <td><a href="https://stocking.ai">Stocking</a></td>
+        </tr>
+        
+        <tr>
+            <td>LearnAI</td>
+            <td><p>Advance your career with new AI knowledge that will set you apart from your peers!
+                No need to be a technical coder. All business leaders are welcome to join. Leverage these incredible AI concepts for your own benefit today.</p></td>
+            <td><a href="https://learnai.com">LearnAI</a></td>
+        </tr>
+        <tr>
+            <td>Leonardo</td>
+            <td><p>Leonardo is an AI-powered Image Generator.</p></td>
+            <td><a href="https://leonardo.ai">Leonardo</a></td>
+        </tr>
+        <tr>
+            <td>unridle.ai</td>
+            <td><p>Read, write and find papers really quickly
+                Quickly find info in research papers, simplify complex topics, write with AI and keep everything organized.
+                Save four hours on your next paper.</p></td>
+            <td><a href="https://www.unriddle.ai/">unridle.ai</a></td>
+        </tr>
+        <tr>
+            <td>crayo.ai</td>
+            <td><p>crayo.ai is an AI-powered ContentGenerator.</p></td>
+            <td><a href="https://crayo.ai/dashboard">crayo.ai</a></td>
+        </tr>
+        <tr>
+            <td>Clone-UI.design</td>
+            <td><p>Clone-UI.design is an AI-powered UI Design Generator.</p></td>
+            <td><a href="https://clone-ui.design">Clone-UI.design</a></td>
+        </tr>
+        <tr>
+            <td>chat.lmsys.org</td>
+            <td><p>chat.lmsys.org is an AI-powered Chatbot.</p></td>
+            <td><a href="https://chat.lmsys.org">chat.lmsys.org</a></td>
+        </tr>
+        <tr>
+            <td>Mockapi.io</td>
+            <td><p>Mockapi.io is an API mocking tool that allows you to create realistic mock APIs for testing and development.</p></td>
+            <td><a href="https://mockapi.io">Mockapi.io</a></td>
+        </tr>
+        <tr>
+            <td>hoppscotch.io</td>
+            <td><p>hoppscotch.io is an API testing tool that allows you to test your APIs quickly and easily.</p></td>
+            <td><a href="https://hoppscotch.io">hoppscotch.io</a></td>
+        </tr>
+        <tr>
+            <td>hopeui.com</td>
+            <td><p>hopeui.com is an AI-powered UI Design Generator.</p></td>
+            <td><a href="https://hopeui.com">hopeui.com</a></td>
+        </tr>
+        <tr>
+            <td>flowgpt.com</td>
+            <td><p>flowgpt.com is an AI-powered Chatbot.</p></td>
+            <td><a href="https://flowgpt.com">flowgpt.com</a></td>
+        </tr>
+      <tr>
+        <td>Motion AI</td>
+        <td><p>Motion AI is an AI-powered Video Generation tool.</p></td>
+        <td><a href="https://motion.ai">Motion AI</a></td>
+      </tr>
+      <tr>
+        <td>MOTIF</td>
+        <td><p>Motiff: UI design tool for AI era.</p></td>
+        <td><a href="https://www.motiff.com/">MOTIF</a></td>
+      </tr>
+      <tr>
+        <td>Minimax</td>
+        <td><p>Minimax is an AI-powered Video Generation tool.</p></td>
+        <td><a href="https://minimax-ai.org/#:~:text=Minimax%20AI%20is%20an%20AI%20platform%20developed%20by%20the%20Chinese">Minimax</a></td>
+      </tr>
+      <tr>
+        <td>Runway ML</td>
+        <td><p>Runway ML is an AI-powered platform for creative tools, including video and image generation.</p></td>
+        <td><a href="https://runwayml.com/">Runway ML</a></td>
+      </tr>
+      <tr>
+        <td>Synthesia</td>
+        <td><p>Synthesia is an AI video generation platform that creates videos with virtual presenters.</p></td>
+        <td><a href="https://www.synthesia.io/">Synthesia</a></td>
+      </tr>
+      <tr>
+        <td>Descript</td>
+        <td><p>Descript is an all-in-one audio/video editing tool with AI-powered features like transcription and voice cloning.</p></td>
+        <td><a href="https://www.descript.com/">Descript</a></td>
+      </tr>
+      <tr>
+        <td>Jasper</td>
+        <td><p>Jasper is an AI content generation platform for creating marketing copy, blog posts, and more.</p></td>
+        <td><a href="https://www.jasper.ai/">Jasper</a></td>
+      </tr>
+      <tr>
+        <td>Replika</td>
+        <td><p>Replika is an AI companion chatbot designed for personal conversations and emotional support.</p></td>
+        <td><a href="https://replika.ai/">Replika</a></td>
+      </tr>
+      <tr>
+        <td>Hugging Face</td>
+        <td><p>Hugging Face is a platform for building, training and deploying state-of-the-art machine learning models.</p></td>
+        <td><a href="https://huggingface.co/">Hugging Face</a></td>
+      </tr>
+      <tr>
+        <td>Lobe</td>
+        <td><p>Lobe is a user-friendly tool for building custom machine learning models without coding.</p></td>
+        <td><a href="https://www.lobe.ai/">Lobe</a></td>
+      </tr>
+      <tr>
+        <td>Teachable Machine</td>
+        <td><p>Teachable Machine is a web-based tool that makes creating machine learning models fast, easy, and accessible to everyone.</p></td>
+        <td><a href="https://teachablemachine.withgoogle.com/">Teachable Machine</a></td>
+      </tr>
+      <tr>
+        <td>Dialogflow</td>
+        <td><p>Dialogflow is a natural language understanding platform that makes it easy to design and integrate conversational user interfaces.</p></td>
+        <td><a href="https://cloud.google.com/dialogflow">Dialogflow</a></td>
+      </tr>
+      <tr>
+        <td>TensorFlow.js</td>
+        <td><p>TensorFlow.js is a library for machine learning in JavaScript, allowing you to develop ML models in the browser or on Node.js.</p></td>
+        <td><a href="https://www.tensorflow.org/js">TensorFlow.js</a></td>
+      </tr>
+      <tr>
+        <td>GPT-4</td>
+        <td><p>GPT-4 is OpenAI's most advanced language model, capable of understanding and generating human-like text with improved capabilities over its predecessors.</p></td>
+        <td><a href="https://openai.com/gpt-4">GPT-4</a></td>
+      </tr>
+      <tr>
+        <td>AutoGPT</td>
+        <td><p>AutoGPT is an experimental open-source application showcasing the capabilities of the GPT-4 language model, designed to autonomously achieve tasks.</p></td>
+        <td><a href="https://github.com/Significant-Gravitas/Auto-GPT">AutoGPT</a></td>
+      </tr>
+      <tr>
+        <td>Anthropic Claude 2</td>
+        <td><p>Claude 2 is Anthropic's latest AI model, known for its strong reasoning capabilities and ability to handle complex tasks.</p></td>
+        <td><a href="https://www.anthropic.com">Anthropic Claude 2</a></td>
+      </tr>
+      <tr>
+        <td>Whisper</td>
+        <td><p>Whisper is an automatic speech recognition (ASR) system trained on a large dataset of diverse audio, capable of transcribing, identifying, and translating multiple languages.</p></td>
+        <td><a href="https://openai.com/research/whisper">Whisper</a></td>
+      </tr>
+      <tr>
+        <td>Llama 2</td>
+        <td><p>Llama 2 is Meta's open-source large language model, designed for various natural language processing tasks and available for commercial use.</p></td>
+        <td><a href="https://ai.meta.com/llama/">Llama 2</a></td>
+      </tr>
+      <tr>
+        <td>Stable Diffusion XL</td>
+        <td><p>Stable Diffusion XL is an advanced version of the Stable Diffusion image generation model, offering improved quality and capabilities.</p></td>
+        <td><a href="https://stability.ai/stable-diffusion">Stable Diffusion XL</a></td>
+      </tr>
+      <tr>
+        <td>Perplexity AI</td>
+        <td><p>Perplexity AI is an AI-powered search engine that provides direct answers to questions, citing sources and offering follow-up queries.</p></td>
+        <td><a href="https://www.perplexity.ai/">Perplexity AI</a></td>
+      </tr>
+      <tr>
+        <td>Cohere</td>
+        <td><p>Cohere provides state-of-the-art language AI through an easy-to-use API, allowing developers to add natural language processing capabilities to their applications.</p></td>
+        <td><a href="https://cohere.ai/">Cohere</a></td>
+      </tr>
+      
+    </tbody>
+</table>    
+
+<footer style="text-align: center; padding: 20px; background-color: #1e79d4; margin-top: 30px;">
+    <p>&copy; 2024 Heart Technologies. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
